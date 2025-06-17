@@ -1,0 +1,6 @@
+@PMMSystem.API_HostAddress = http://localhost:5179
+
+GET {{PMMSystem.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
