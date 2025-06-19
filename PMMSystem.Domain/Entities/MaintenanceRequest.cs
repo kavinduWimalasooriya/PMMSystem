@@ -8,5 +8,6 @@ namespace PMMSystem.Domain.Entities
     public required string PropertyName { get; set; }
     public required string Description { get; set; }
     public MaintenanceStatus Status { get; set; }
+    public Image? Image { get; set; }
   }
 }
