@@ -5,5 +5,6 @@ namespace PMMSystem.Application.Services.Interfaces
   public interface IMaintenanceRequestService
   {
     Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync();
+    Task CreateMaintenanceRequestAsync(CreateMaintenanceRequestDto maintenanceRequest,string? imgUrl);
   }
 }

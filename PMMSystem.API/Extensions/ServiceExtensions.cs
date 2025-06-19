@@ -28,6 +28,7 @@ namespace PMMSystem.API.Extensions
     public static void ConfigureServices(this IServiceCollection services) 
     {
       services.AddScoped<IMaintenanceRequestService, MaintenanceRequestService>();
+      services.AddScoped<IFileService, FileService>();
     }
 
     public static void ConfigureRepositories( this IServiceCollection services) 

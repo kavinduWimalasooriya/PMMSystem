@@ -2,11 +2,19 @@
 using PMMSystem.Application.Dtos;
 using PMMSystem.Application.RepositoryInterfaces;
 using PMMSystem.Application.Services.Interfaces;
+using PMMSystem.Domain.Entities;
 
 namespace PMMSystem.Application.Services
 {
   public class MaintenanceRequestService(IMaintenanceRequestRepository maintenanceRepo,IMapper mapper) : IMaintenanceRequestService
   {
+    public async Task CreateMaintenanceRequestAsync(CreateMaintenanceRequestDto maintenanceRequest,string? imgUrl)
+    {
+      var maintenanceObj = mapper.Map<MaintenanceRequest>(maintenanceRequest);
+      maintenanceObj.ImageUrl = imgUrl;
+      await maintenanceRepo.CreateMaintenanceRequestAsync(maintenanceObj);
+    }
+
     public async Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync()
     {
       var requestObj = await maintenanceRepo.GetMaintenanceRequestsAsync();
