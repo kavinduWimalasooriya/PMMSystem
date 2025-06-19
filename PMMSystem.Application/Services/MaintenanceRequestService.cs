@@ -15,6 +15,13 @@ namespace PMMSystem.Application.Services
       await maintenanceRepo.CreateMaintenanceRequestAsync(maintenanceObj);
     }
 
+    public async Task<MaintenanceRequestDto?> GetMaintenanceRequestByIdAsync(int id)
+    {
+      var maintenanceObj = await maintenanceRepo.GetMaintenanceRequestByIdAsync(id);
+      var maintenanceReq = mapper.Map<MaintenanceRequestDto>(maintenanceObj);
+      return maintenanceReq;
+    }
+
     public async Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync()
     {
       var requestObj = await maintenanceRepo.GetMaintenanceRequestsAsync();

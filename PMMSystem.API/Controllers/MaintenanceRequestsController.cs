@@ -10,11 +10,20 @@ namespace PMMSystem.API.Controllers
   {
     const string ImageFolder = "images";
 
-    [HttpGet]
+    [HttpGet("maintenance-requests")]
     public async Task<ActionResult<IEnumerable<MaintenanceRequestDto>>> GetAll() 
     { 
       var requestDtos = await maintenanceRequestService.GetMaintenanceRequestsAsync();
       return Ok(requestDtos);
+    }
+
+    [HttpGet("maintenance-requets/{id:int}")]
+    public async Task<ActionResult<MaintenanceRequestDto>> GetMaintenanceRequestById(int id)
+    {
+      var request = await maintenanceRequestService.GetMaintenanceRequestByIdAsync(id);
+      if(request == null)
+        return NotFound();
+      return Ok(request);
     }
     [HttpPost]
     public async Task<ActionResult> Add(CreateMaintenanceRequestDto request)

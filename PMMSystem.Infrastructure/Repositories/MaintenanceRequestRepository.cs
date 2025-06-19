@@ -13,6 +13,11 @@ namespace PMMSystem.Infrastructure.Repositories
       await context.SaveChangesAsync();
     }
 
+    public async Task<MaintenanceRequest?> GetMaintenanceRequestByIdAsync(int id)
+    {
+      return await context.MaintenanceRequests.FindAsync(id);
+    }
+
     public async Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync()
     {
       var maintenanceRequests = await context.MaintenanceRequests.ToListAsync();
