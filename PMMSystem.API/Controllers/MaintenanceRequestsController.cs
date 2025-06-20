@@ -6,7 +6,7 @@ namespace PMMSystem.API.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class MaintenanceRequestsController(IMaintenanceRequestService maintenanceRequestService, IWebHostEnvironment webHost,IFileService fileService) : ControllerBase
+  public class MaintenanceRequestsController(IMaintenanceRequestService maintenanceRequestService, IWebHostEnvironment webHost) : ControllerBase
   {
     const string ImageFolder = "images";
 
@@ -26,42 +26,16 @@ namespace PMMSystem.API.Controllers
       return Ok(request);
     }
     [HttpPost]
-    public async Task<ActionResult> Add(CreateMaintenanceRequestDto request)
+    public async Task<ActionResult> Add([FromForm] CreateMaintenanceRequestDto request)
     {
-      string? imagePath = null;
-      if (request.Image != null)
-      {
-        imagePath = await fileService.SaveFileAsync(request.Image,webHost.WebRootPath,ImageFolder);
-      }
-
-      await maintenanceRequestService.CreateMaintenanceRequestAsync(request, imagePath);
-
+      await maintenanceRequestService.CreateMaintenanceRequestAsync(request, webHost.WebRootPath, ImageFolder);
       return Ok();
     }
 
-    [HttpPut("{id:int}")]
+    [HttpPut]
     public async Task<ActionResult> Update([FromForm] UpdateMaintenanceRequestDto request)
     {
-      var existingRequest = await maintenanceRequestService.GetMaintenanceRequestByIdAsync(request.Id);
-      if (existingRequest == null)
-      {
-        return NotFound($"Maintenance Request with ID {request.Id} not found.");
-      }
-
-      string? imagePath = existingRequest.ImageUrl;
-
-      if (request.Image != null)
-      {
-        if (!string.IsNullOrEmpty(imagePath))
-        {
-          var imgFilePath = Path.Combine(webHost.WebRootPath,ImageFolder, imagePath);
-          await fileService.DeleteFileAsync(imgFilePath);
-        }
-        imagePath = await fileService.SaveFileAsync(request.Image, webHost.WebRootPath, ImageFolder);
-      }
-
-      await maintenanceRequestService.UpdateMaintenanceRequestAsync(request, imagePath);
-
+      await maintenanceRequestService.UpdateRequestAsync(request,webHost.WebRootPath,ImageFolder);
       return Ok();
     }
   } 

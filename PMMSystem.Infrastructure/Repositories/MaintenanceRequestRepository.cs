@@ -23,5 +23,11 @@ namespace PMMSystem.Infrastructure.Repositories
       var maintenanceRequests = await context.MaintenanceRequests.ToListAsync();
       return maintenanceRequests;
     }
+
+    public async Task UpdateMaintenanceRequestAsync(MaintenanceRequest newObj)
+    {
+      context.MaintenanceRequests.Update(newObj);
+      await context.SaveChangesAsync();
+    }
   }
 }

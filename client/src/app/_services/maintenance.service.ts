@@ -21,4 +21,8 @@ export class MaintenanceService {
   createMaintenanceRequest(formData: FormData){
     return this.http.post(this.baseUrl + "MaintenanceRequests", formData);
   }
+
+  updateMaintenanceRequest(formData: FormData){
+    return this.http.put(this.baseUrl + "MaintenanceRequests", formData);
+  }
 }

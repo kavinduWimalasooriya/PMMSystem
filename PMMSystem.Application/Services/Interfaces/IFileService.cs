@@ -6,6 +6,5 @@ namespace PMMSystem.Application.Services.Interfaces
   {
     Task<string> SaveFileAsync(IFormFile image, string root,string folder);
     Task DeleteFileAsync(string filePath);
-    string GetFileUrl(string filePath);
   }
 }

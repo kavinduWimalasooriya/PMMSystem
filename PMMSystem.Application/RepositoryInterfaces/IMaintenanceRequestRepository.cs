@@ -7,5 +7,6 @@ namespace PMMSystem.Application.RepositoryInterfaces
     Task CreateMaintenanceRequestAsync(MaintenanceRequest maintenanceObj);
     Task<MaintenanceRequest?> GetMaintenanceRequestByIdAsync(int id);
     Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync();
+    Task UpdateMaintenanceRequestAsync(MaintenanceRequest newObj);
   }
 }

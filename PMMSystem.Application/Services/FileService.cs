@@ -12,11 +12,6 @@ namespace PMMSystem.Application.Services
       return Task.CompletedTask;
     }
 
-    public string GetFileUrl(string filePath)
-    {
-      throw new NotImplementedException();
-    }
-
     public async Task<string> SaveFileAsync(IFormFile image, string root, string folder)
     {
       var uniqueFileName = $"{Guid.NewGuid()}-{Path.GetFileName(image.FileName)}";
