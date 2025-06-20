@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center">
+    <div class="col-6">
+        <div class="card p-4">
+            <form #createForm="ngForm" (ngSubmit)="onSubmit()">
+                <div class="d-flex justify-content-center m-2">
+                <h3>Create new Maintenance Request</h3>
+            </div>
+            <div t class="form-outline mb-4">
+                <label class="form-label" for="eventName">Maintenance Event Name</label>
+                <input type="text" id="eventName"  class="form-control"
+                    name="maintenanceEventName" required />
+            </div>
+
+            <div class="form-outline mb-4">
+                <label class="form-label" for="propertyName">Property Name</label>
+                <input type="text" id="propertyName"  class="form-control"
+                    name="propertyName" required />
+            </div>
+
+            <div t class="form-outline mb-4">
+                <label class="form-label" for="description">Description</label>
+                <textarea type="text" id="description"  class="form-control"
+                    name="description" rows="6" required >
+                </textarea>
+            </div>
+
+
+            <div class="d-flex justify-content-end mb-3">
+                <button class="btn btn-danger  me-2" >close</button>
+                <button type="submit" class="btn btn-primary me-2" [disabled]="!createForm.form.valid">Add New Maintenance</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>

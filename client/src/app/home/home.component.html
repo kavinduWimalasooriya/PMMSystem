@@ -1,0 +1,12 @@
+<div class="row">
+    <button class="btn btn-primary col-4 me-0" routerLink ="/maintenance/add">Add New Maintenance Request</button>
+</div>
+<div class="row mt-2">
+
+    @for (item of maintenanceReq; track $index)
+    {
+    <div class="col-2">
+        <app-maintenance-card [maintenanceRequest]="item"> </app-maintenance-card>
+    </div>
+    }
+</div>

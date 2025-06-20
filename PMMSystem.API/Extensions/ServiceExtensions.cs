@@ -14,9 +14,7 @@ namespace PMMSystem.API.Extensions
       services.AddCors(options =>
       {
         options.AddPolicy("CorsPolicy", builder =>
-        builder.WithOrigins("https://loaclhost:4200")
-        .AllowAnyHeader()
-        .AllowAnyMethod());
+        builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
       });
     }
 

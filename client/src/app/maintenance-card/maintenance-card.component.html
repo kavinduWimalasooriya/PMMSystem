@@ -1,0 +1,14 @@
+<div class="card" [routerLink]="['/maintenance/edit',maintenanceRequest().id]">
+    <div class="card-img-wrapper">
+        <img class="card-img-top" src="{{imgBaseUrl}}{{maintenanceRequest().imageUrl}}" alt="{{maintenanceRequest().maintenanceEventName}}" />
+    </div>
+    <div class="card-body">
+        <h5 class="card-title text-center">
+            <i class="fa fa-tasks me-2"></i>
+            {{maintenanceRequest().maintenanceEventName}}
+        </h5>
+        <p class="text-center text-muted card-text">{{maintenanceRequest().propertyName}}</p>
+        <p class="text-center text-muted card-text">{{maintenanceRequest().description}}</p>
+        <p class="text-center text-muted card-text">{{maintenanceRequest().status |maintenanceStatus}}</p>
+    </div>
+</div>
