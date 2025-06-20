@@ -1,6 +1,59 @@
-<div class="row">
-    <div class="col-4">
-        
+@if (maintenanceRequest) {
+    <div class="row">
+        <div class="col-4">
+            <div class="card p-4">
+                <img src="{{imgBaseUrl}}{{maintenanceRequest.imageUrl}}"
+                    alt="{{maintenanceRequest.maintenanceEventName}}">
+            </div>
+        </div>
+        <div class="col-8">
+            <div class="card p-4">
+                <form #updateForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div class="d-flex justify-content-center m-2">
+                        <h3>Update Maintenance Request</h3>
+                    </div>
+                    <div t class="form-outline mb-4">
+                        <label class="form-label" for="eventName">Maintenance Event Name</label>
+                        <input type="text" id="eventName" class="form-control"
+                            [(ngModel)]="maintenanceRequest.maintenanceEventName" name="maintenanceEventName" required />
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="propertyName">Property Name</label>
+                        <input type="text" id="propertyName" class="form-control"
+                            [(ngModel)]="maintenanceRequest.propertyName" name="propertyName" required />
+                    </div>
+
+                    <div t class="form-outline mb-4">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea type="text" id="description" class="form-control"
+                            [(ngModel)]="maintenanceRequest.description" name="description" rows="6" required>
+                    </textarea>
+                    </div>
+                    
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="status">Status</label>
+                        <select id="status" class="form-control"
+                            [(ngModel)]="maintenanceRequest.status" name="status" required>
+                            <option [ngValue]="0">New</option>
+                            <option [ngValue]="1">Accepted</option>
+                            <option [ngValue]="2">Rejected</option>
+                        </select>
+                    </div>
+
+                    <div class="form-outline mb-4">
+                        <label class="form-label" for="image">Image</label>
+                        <input type="file" id="image" (change)="onfileSelected($event)" class="form-control"
+                            accept="image/*" name="image" required />
+                    </div>
+
+
+                    <div class="d-flex justify-content-end mb-3">
+                        <button class="btn btn-danger  me-2">close</button>
+                        <button type="submit" class="btn btn-primary me-2">Add New Maintenance</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="col-8"></div>
-</div>
+}

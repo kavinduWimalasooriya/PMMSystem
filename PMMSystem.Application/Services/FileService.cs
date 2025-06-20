@@ -7,7 +7,9 @@ namespace PMMSystem.Application.Services
   {
     public Task DeleteFileAsync(string filePath)
     {
-      throw new NotImplementedException();
+      if(File.Exists(filePath))
+        File.Delete(filePath);
+      return Task.CompletedTask;
     }
 
     public string GetFileUrl(string filePath)

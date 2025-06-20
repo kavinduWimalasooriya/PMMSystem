@@ -28,5 +28,11 @@ namespace PMMSystem.Application.Services
       var requestDtos = mapper.Map<IEnumerable<MaintenanceRequestDto>>(requestObj);
       return requestDtos;
     }
+
+    public Task UpdateMaintenanceRequestAsync(UpdateMaintenanceRequestDto request, string? imagePath)
+    {
+      var requestObj = mapper.Map<MaintenanceRequest>(request);
+      throw new NotImplementedException();
+    }
   }
 }

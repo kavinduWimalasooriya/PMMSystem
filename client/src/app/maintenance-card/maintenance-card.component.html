@@ -8,7 +8,7 @@
             {{maintenanceRequest().maintenanceEventName}}
         </h5>
         <p class="text-center text-muted card-text">{{maintenanceRequest().propertyName}}</p>
-        <p class="text-center text-muted card-text">{{maintenanceRequest().description}}</p>
+        <p class="text-center text-muted card-text">{{maintenanceRequest().description | truncateString}}</p>
         <p class="text-center text-muted card-text">{{maintenanceRequest().status |maintenanceStatus}}</p>
     </div>
 </div>

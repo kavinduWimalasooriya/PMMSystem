@@ -17,4 +17,8 @@ export class MaintenanceService {
   getMaintenanceRequestById(id:number){
     return this.http.get<MaintenanceRequest>(this.baseUrl+"MaintenanceRequests/maintenance-requests/"+id)
   }
+
+  createMaintenanceRequest(formData: FormData){
+    return this.http.post(this.baseUrl + "MaintenanceRequests", formData);
+  }
 }

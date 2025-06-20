@@ -17,7 +17,7 @@ namespace PMMSystem.API.Controllers
       return Ok(requestDtos);
     }
 
-    [HttpGet("maintenance-requets/{id:int}")]
+    [HttpGet("maintenance-requests/{id:int}")]
     public async Task<ActionResult<MaintenanceRequestDto>> GetMaintenanceRequestById(int id)
     {
       var request = await maintenanceRequestService.GetMaintenanceRequestByIdAsync(id);
@@ -35,6 +35,32 @@ namespace PMMSystem.API.Controllers
       }
 
       await maintenanceRequestService.CreateMaintenanceRequestAsync(request, imagePath);
+
+      return Ok();
+    }
+
+    [HttpPut("{id:int}")]
+    public async Task<ActionResult> Update([FromForm] UpdateMaintenanceRequestDto request)
+    {
+      var existingRequest = await maintenanceRequestService.GetMaintenanceRequestByIdAsync(request.Id);
+      if (existingRequest == null)
+      {
+        return NotFound($"Maintenance Request with ID {request.Id} not found.");
+      }
+
+      string? imagePath = existingRequest.ImageUrl;
+
+      if (request.Image != null)
+      {
+        if (!string.IsNullOrEmpty(imagePath))
+        {
+          var imgFilePath = Path.Combine(webHost.WebRootPath,ImageFolder, imagePath);
+          await fileService.DeleteFileAsync(imgFilePath);
+        }
+        imagePath = await fileService.SaveFileAsync(request.Image, webHost.WebRootPath, ImageFolder);
+      }
+
+      await maintenanceRequestService.UpdateMaintenanceRequestAsync(request, imagePath);
 
       return Ok();
     }

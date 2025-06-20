@@ -19,6 +19,7 @@ namespace PMMSystem.Application.Mappings
                .ForMember(dest => dest.MaintenanceEventName, opt => opt.MapFrom(src => src.MaintenanceEventName))
                .ForMember(dest => dest.PropertyName, opt => opt.MapFrom(src => src.PropertyName))
                .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description));
+      CreateMap<UpdateMaintenanceRequestDto, MaintenanceRequest>();
     }
   }
 }
