@@ -4,6 +4,7 @@ using PMMSystem.Application.RepositoryInterfaces;
 using PMMSystem.Application.Services.Interfaces;
 using PMMSystem.Domain.Entities;
 using PMMSystem.Domain.Enum;
+using PMMSystem.Domain.Exceptions;
 
 namespace PMMSystem.Application.Services
 {
@@ -21,9 +22,11 @@ namespace PMMSystem.Application.Services
       await maintenanceRepo.CreateMaintenanceRequestAsync(maintenanceObj);
     }
 
-    public async Task<MaintenanceRequestDto?> GetMaintenanceRequestByIdAsync(int id)
+    public async Task<MaintenanceRequestDto> GetMaintenanceRequestByIdAsync(int id)
     {
       var maintenanceObj = await maintenanceRepo.GetMaintenanceRequestByIdAsync(id);
+      if(maintenanceObj == null)
+        throw new MaintenanceNotFoundException(id);
       var maintenanceReq = mapper.Map<MaintenanceRequestDto>(maintenanceObj);
       return maintenanceReq;
     }
@@ -35,12 +38,11 @@ namespace PMMSystem.Application.Services
       return requestDtos;
     }
 
-
     public async Task UpdateRequestAsync(UpdateMaintenanceRequestDto request, string webRootPath, string imageFolder)
     {
       var existingObj = await maintenanceRepo.GetMaintenanceRequestByIdAsync(request.Id);
       if(existingObj == null)
-        throw new NotImplementedException();
+        throw new MaintenanceNotFoundException(request.Id);
       mapper.Map(request, existingObj);
 
       existingObj.Modified = DateTime.UtcNow;

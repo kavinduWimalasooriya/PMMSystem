@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NLog;
+using PMMSystem.API;
 using PMMSystem.API.Extensions;
 using PMMSystem.Application;
 using PMMSystem.Infrastructure.Data;
@@ -14,6 +15,7 @@ builder.Services.ConfigureCors();
 builder.Services.ConfigureLogger();
 builder.Services.ConfigureServices();
 builder.Services.ConfigureRepositories();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(opt =>
 {
@@ -28,6 +30,8 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(opt => { });
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

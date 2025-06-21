@@ -7,7 +7,7 @@ namespace PMMSystem.Application.Services.Interfaces
   {
     Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync(string? search, MaintenanceStatus? staus);
     Task CreateMaintenanceRequestAsync(CreateMaintenanceRequestDto maintenanceRequest, string webRootPath, string imageFolder);
-    Task<MaintenanceRequestDto?> GetMaintenanceRequestByIdAsync(int id);
+    Task<MaintenanceRequestDto> GetMaintenanceRequestByIdAsync(int id);
     Task UpdateRequestAsync(UpdateMaintenanceRequestDto request, string webRootPath, string imageFolder);
   }
 }

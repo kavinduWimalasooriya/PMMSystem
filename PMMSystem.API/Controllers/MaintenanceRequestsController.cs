@@ -2,6 +2,7 @@
 using PMMSystem.Application.Dtos;
 using PMMSystem.Application.Services.Interfaces;
 using PMMSystem.Domain.Enum;
+using PMMSystem.Domain.Exceptions;
 
 namespace PMMSystem.API.Controllers
 {
@@ -22,8 +23,6 @@ namespace PMMSystem.API.Controllers
     public async Task<ActionResult<MaintenanceRequestDto>> GetMaintenanceRequestById(int id)
     {
       var request = await maintenanceRequestService.GetMaintenanceRequestByIdAsync(id);
-      if(request == null)
-        return NotFound();
       return Ok(request);
     }
     [HttpPost]
