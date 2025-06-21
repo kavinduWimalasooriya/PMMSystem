@@ -11,5 +11,6 @@ namespace PMMSystem.Application.Dtos
     public string Description { get; set; } = string.Empty;
     public MaintenanceStatus Status { get; set; }
     public IFormFile? Image { get; set; }
+    public UserRole Role { get; set; }
   }
 }

@@ -5,6 +5,8 @@ import { MaintenanceRequest } from '../_models/maintenanceRequestModel';
 import { FormsModule } from '@angular/forms';
 import { MaintenanceStatus } from '../_enums/maintenanceStatus';
 import { RoleManagemantService } from '../_services/role-managemant.service';
+import { ToastrService } from 'ngx-toastr';
+import { Role } from '../_enums/roles';
 
 @Component({
   selector: 'app-maintenance-edit',
@@ -14,7 +16,11 @@ import { RoleManagemantService } from '../_services/role-managemant.service';
 })
 export class MaintenanceEditComponent implements OnInit {
 
-  constructor(private maintenanceService: MaintenanceService, private route: ActivatedRoute,public roleService : RoleManagemantService) { }
+  constructor(private maintenanceService: MaintenanceService, 
+    private route: ActivatedRoute,
+    public roleService : RoleManagemantService,
+    private toastr : ToastrService
+  ) { }
 
   maintenanceRequest?: MaintenanceRequest;
   imgBaseUrl = "https://localhost:5001/";
@@ -35,9 +41,10 @@ export class MaintenanceEditComponent implements OnInit {
   }
   onSubmit() {
     if (!this.maintenanceRequest) {
-      console.error('Maintenance request is not loaded.');
+      this.toastr.error('Maintenance request is not loaded.');
       return;
     }
+
 
     const formData = new FormData();
     formData.append('Id', this.maintenanceRequest.id.toString());
@@ -45,6 +52,13 @@ export class MaintenanceEditComponent implements OnInit {
     formData.append('PropertyName', this.maintenanceRequest.propertyName);
     formData.append('Description', this.maintenanceRequest.description);
     formData.append('Status', this.maintenanceRequest.status.toString());
+    let roleValueToSend: number;
+    if (this.roleService.currentRole() == Role.Admin) {
+        roleValueToSend = 0; 
+    } else  {
+        roleValueToSend = 1; 
+    } 
+    formData.append('Role', roleValueToSend.toString());
 
     if (this.selectedFile) {
       formData.append('Image', this.selectedFile, this.selectedFile.name);
@@ -58,7 +72,6 @@ export class MaintenanceEditComponent implements OnInit {
     this.maintenanceService.updateMaintenanceRequest(data).subscribe({
       next: res => {
         window.location.reload();
-        console.log("done");
       },
       error: error => console.log(error)
     });
@@ -66,14 +79,11 @@ export class MaintenanceEditComponent implements OnInit {
 
   loadMaintenance() {
     const idParam = this.route.snapshot.paramMap.get("id");
-    console.log(idParam)
     if (!idParam) return;
 
     const id: number = parseInt(idParam, 10);
 
     if (isNaN(id)) return;
-
-    console.log(id)
 
     this.maintenanceService.getMaintenanceRequestById(id).subscribe({
       next: res => this.maintenanceRequest = res,

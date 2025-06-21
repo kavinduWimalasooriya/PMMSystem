@@ -43,6 +43,8 @@ namespace PMMSystem.Application.Services
       var existingObj = await maintenanceRepo.GetMaintenanceRequestByIdAsync(request.Id);
       if(existingObj == null)
         throw new MaintenanceNotFoundException(request.Id);
+      if (existingObj.Status != request.Status && request.Role == UserRole.PropertyManager)
+        throw new MockAuthException();
       mapper.Map(request, existingObj);
 
       existingObj.Modified = DateTime.UtcNow;
