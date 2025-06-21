@@ -1,0 +1,22 @@
+<div class="container">
+    <div class="text-center mt-4">
+        <h1>Internal Server Error - 500</h1>  
+    </div>
+    @if (error) {
+        <h4 class="text-center text-denger">Error : {{error.message}}</h4>
+        <p>Note : If error occurred followed bellow steps.</p>
+        <ol>
+            <li>
+                Open the developer toolks in browser, and check the network tab and examine the failing nework request.
+            </li>
+            <li>
+                Examine the URL thet failing.
+            </li>
+            <li>
+                Reproduce the failing request via postman and debug it.
+            </li>
+        </ol>
+        <p class="font-weight-bold">Bellow is the stack trace.</p>
+        <code>{{error.details}}</code>
+    }
+</div>

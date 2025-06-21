@@ -2,10 +2,11 @@ import { Component, inject, OnInit } from '@angular/core';
 import { RoleManagemantService } from '../_services/role-managemant.service';
 import { NgToggleComponent } from 'ng-toggle-button';
 import { Role } from '../_enums/roles';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
-  imports: [NgToggleComponent],
+  imports: [NgToggleComponent,RouterLink],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
