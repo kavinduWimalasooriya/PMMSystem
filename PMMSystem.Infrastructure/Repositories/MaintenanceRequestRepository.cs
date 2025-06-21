@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PMMSystem.Application.RepositoryInterfaces;
 using PMMSystem.Domain.Entities;
+using PMMSystem.Domain.Enum;
 using PMMSystem.Infrastructure.Data;
 
 namespace PMMSystem.Infrastructure.Repositories
@@ -18,10 +19,21 @@ namespace PMMSystem.Infrastructure.Repositories
       return await context.MaintenanceRequests.FindAsync(id);
     }
 
-    public async Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync()
+    public async Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync(string? search, MaintenanceStatus? status)
     {
-      var maintenanceRequests = await context.MaintenanceRequests.ToListAsync();
-      return maintenanceRequests;
+      IQueryable<MaintenanceRequest> query = context.MaintenanceRequests;
+      if (search != null) 
+      {
+        query = query.Where(m => m.MaintenanceEventName.Contains(search) || m.PropertyName.Contains(search));
+      }
+      if (status.HasValue)
+      {
+        query = query.Where(m => m.Status == status.Value);
+      }
+
+      query = query.OrderByDescending(r => r.Created);
+
+      return await query.ToListAsync();
     }
 
     public async Task UpdateMaintenanceRequestAsync(MaintenanceRequest newObj)

@@ -3,6 +3,7 @@ import { MaintenanceService } from '../_services/maintenance.service';
 import { ActivatedRoute } from '@angular/router';
 import { MaintenanceRequest } from '../_models/maintenanceRequestModel';
 import { FormsModule } from '@angular/forms';
+import { MaintenanceStatus } from '../_enums/maintenanceStatus';
 
 @Component({
   selector: 'app-maintenance-edit',
@@ -17,6 +18,7 @@ export class MaintenanceEditComponent implements OnInit {
   maintenanceRequest?: MaintenanceRequest;
   imgBaseUrl = "https://localhost:5001/";
   selectedFile: File | null = null;
+  enum = MaintenanceStatus
 
   ngOnInit() {
     this.loadMaintenance();

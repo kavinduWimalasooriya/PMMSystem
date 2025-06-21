@@ -1,11 +1,30 @@
-<div class="row">
-    <button class="btn btn-primary col-4 me-0" routerLink ="/maintenance/add">Add New Maintenance Request</button>
+<div class="row align-items-center mb-3">
+    <div class="col-8">
+        <form #searchForm="ngForm" (ngSubmit)="getAllMaintenanceCards()">
+            <div class="d-flex gap-2">
+                <input class="form-control me-3 w-50" type="text" id="searchText" name="searchTerm"
+                    placeholder="Search by event or property name" [(ngModel)]="searchTerm" />
+                <select class="form-select w-auto" [(ngModel)]="status" name="status">
+                    <option value="all">Filter by Status (All)</option>
+                    @for (item of validMaintenanceStatusStrings; track $index) {
+                        <option value="{{item}}">{{item}}</option>
+                    }
+                </select>
+                <button class="btn btn-info" type="submit">Search Or Filter</button>
+                <button class="btn btn-danger" type="button" (click)="resetSearchForm()">Reset All</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-4 text-md-end mt-2 mt-md-0">
+        <button class="btn btn-primary w-100 " routerLink="/maintenance/add">Add New Maintenance Request</button>
+    </div>
 </div>
 <div class="row mt-2">
 
     @for (item of maintenanceReq; track $index)
     {
-    <div class="col-2">
+    <div class="col-2 mt-2">
         <app-maintenance-card [maintenanceRequest]="item"> </app-maintenance-card>
     </div>
     }

@@ -1,4 +1,5 @@
 ﻿using PMMSystem.Domain.Entities;
+using PMMSystem.Domain.Enum;
 
 namespace PMMSystem.Application.RepositoryInterfaces
 {
@@ -6,7 +7,7 @@ namespace PMMSystem.Application.RepositoryInterfaces
   {
     Task CreateMaintenanceRequestAsync(MaintenanceRequest maintenanceObj);
     Task<MaintenanceRequest?> GetMaintenanceRequestByIdAsync(int id);
-    Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync();
+    Task<IEnumerable<MaintenanceRequest>?> GetMaintenanceRequestsAsync(string? search,MaintenanceStatus? status);
     Task UpdateMaintenanceRequestAsync(MaintenanceRequest newObj);
   }
 }

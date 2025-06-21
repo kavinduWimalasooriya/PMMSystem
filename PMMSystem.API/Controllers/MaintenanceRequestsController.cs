@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PMMSystem.Application.Dtos;
 using PMMSystem.Application.Services.Interfaces;
+using PMMSystem.Domain.Enum;
 
 namespace PMMSystem.API.Controllers
 {
@@ -11,9 +12,9 @@ namespace PMMSystem.API.Controllers
     const string ImageFolder = "images";
 
     [HttpGet("maintenance-requests")]
-    public async Task<ActionResult<IEnumerable<MaintenanceRequestDto>>> GetAll() 
+    public async Task<ActionResult<IEnumerable<MaintenanceRequestDto>>> GetAll([FromQuery]string? search, [FromQuery] MaintenanceStatus? status) 
     { 
-      var requestDtos = await maintenanceRequestService.GetMaintenanceRequestsAsync();
+      var requestDtos = await maintenanceRequestService.GetMaintenanceRequestsAsync(search,status);
       return Ok(requestDtos);
     }
 

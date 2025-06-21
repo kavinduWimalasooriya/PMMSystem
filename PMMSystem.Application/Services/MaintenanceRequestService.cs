@@ -3,6 +3,7 @@ using PMMSystem.Application.Dtos;
 using PMMSystem.Application.RepositoryInterfaces;
 using PMMSystem.Application.Services.Interfaces;
 using PMMSystem.Domain.Entities;
+using PMMSystem.Domain.Enum;
 
 namespace PMMSystem.Application.Services
 {
@@ -27,18 +28,13 @@ namespace PMMSystem.Application.Services
       return maintenanceReq;
     }
 
-    public async Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync()
+    public async Task<IEnumerable<MaintenanceRequestDto>?> GetMaintenanceRequestsAsync(string? search, MaintenanceStatus? status)
     {
-      var requestObj = await maintenanceRepo.GetMaintenanceRequestsAsync();
+      var requestObj = await maintenanceRepo.GetMaintenanceRequestsAsync(search,status);
       var requestDtos = mapper.Map<IEnumerable<MaintenanceRequestDto>>(requestObj);
       return requestDtos;
     }
 
-    public Task UpdateMaintenanceRequestAsync(UpdateMaintenanceRequestDto request, string? imagePath)
-    {
-      var requestObj = mapper.Map<MaintenanceRequest>(request);
-      throw new NotImplementedException();
-    }
 
     public async Task UpdateRequestAsync(UpdateMaintenanceRequestDto request, string webRootPath, string imageFolder)
     {
