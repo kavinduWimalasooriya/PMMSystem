@@ -5,7 +5,13 @@
         <a class="nav-link" href="#">Home</a>
       </li>
     </ul>
-    <h6 class="my-auto ms-auto text-muted">You are logged in as a <strong>{{roleService.currentRole()}}</strong></h6>
-    
+    <div class="my-auto ms-auto text-muted d-flex">
+      <ng-toggle class="my-auto ms-auto" [value]="isAdmin" [color]="{
+      unchecked: '#939da2',
+      checked: '#f62d51'
+    }" (change)="loadCorrectRole()">
+      </ng-toggle>
+      <h6 class="ms-4 mt-2">You are logged in as a <strong>{{roleService.currentRole()}}</strong></h6>
+    </div>
   </div>
 </nav>

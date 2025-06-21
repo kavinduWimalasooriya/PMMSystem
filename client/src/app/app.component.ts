@@ -14,7 +14,16 @@ export class AppComponent implements OnInit {
   title = 'client';
   roleService = inject(RoleManagemantService)
   ngOnInit(): void {
-    this.roleService.setRole(Role.PropertyManager);
+    this.setCurrentUser();
   }
-  
+
+  setCurrentUser() {
+    const userString = localStorage.getItem("userRole");
+    if (!userString)
+      this.roleService.setRole(Role.PropertyManager);
+    else {
+      this.roleService.currentRole.set(userString as Role);
+    }
+  }
+
 }

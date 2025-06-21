@@ -11,7 +11,7 @@ export class RoleManagemantService {
   currentRole = signal<string | null>(null);
 
   setRole(role: Role) {
-    localStorage.setItem("userRole", role);
+    localStorage.setItem("userRole", role); 
     this.currentRole.set(role);
   }
 }
