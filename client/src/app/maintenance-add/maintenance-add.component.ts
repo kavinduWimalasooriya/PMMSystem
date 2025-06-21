@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { newMaintenanceRequest } from '../_models/newMaintenanceRequestData ';
 import { MaintenanceService } from '../_services/maintenance.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-maintenance-add',
-  imports: [FormsModule,],
+  imports: [FormsModule,RouterLink],
   templateUrl: './maintenance-add.component.html',
   styleUrl: './maintenance-add.component.css'
 })

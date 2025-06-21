@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { MaintenanceService } from '../_services/maintenance.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MaintenanceRequest } from '../_models/maintenanceRequestModel';
 import { FormsModule } from '@angular/forms';
 import { MaintenanceStatus } from '../_enums/maintenanceStatus';
+import { RoleManagemantService } from '../_services/role-managemant.service';
 
 @Component({
   selector: 'app-maintenance-edit',
-  imports: [FormsModule],
+  imports: [FormsModule,RouterLink],
   templateUrl: './maintenance-edit.component.html',
   styleUrl: './maintenance-edit.component.css'
 })
 export class MaintenanceEditComponent implements OnInit {
 
-  constructor(private maintenanceService: MaintenanceService, private route: ActivatedRoute) { }
+  constructor(private maintenanceService: MaintenanceService, private route: ActivatedRoute,public roleService : RoleManagemantService) { }
 
   maintenanceRequest?: MaintenanceRequest;
   imgBaseUrl = "https://localhost:5001/";

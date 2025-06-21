@@ -1,6 +1,6 @@
 <div class="card" [routerLink]="['/maintenance/edit',maintenanceRequest().id]">
-    <div class="card-img-wrapper">
-        <img class="card-img-top" src="{{imgBaseUrl}}{{maintenanceRequest().imageUrl}}" alt="{{maintenanceRequest().maintenanceEventName}}" />
+    <div class="card-img-wrapper h-25" style="max-height: 250px; overflow: hidden;">
+        <img class="card-img-top img-thumbnail" src="{{imgBaseUrl}}{{maintenanceRequest().imageUrl}}" alt="{{maintenanceRequest().maintenanceEventName}}" />
     </div>
     <div class="card-body">
         <h5 class="card-title text-center">
@@ -9,6 +9,6 @@
         </h5>
         <p class="text-center text-muted card-text">{{maintenanceRequest().propertyName}}</p>
         <p class="text-center text-muted card-text">{{maintenanceRequest().description | truncateString}}</p>
-        <p class="text-center text-muted card-text">{{maintenanceRequest().status |maintenanceStatus}}</p>
+        <p class="text-center text-muted card-text"><strong>{{maintenanceRequest().status |maintenanceStatus}}</strong></p>
     </div>
 </div>
