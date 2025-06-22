@@ -80,3 +80,22 @@ Key additional packages utilized include:
 - Scalar: For enhanced OpenAPI documentation rendering.
 
 To ensure a resilient and user-friendly application, the project incorporates robust global error handling for both front-end (if applicable, or implies a unified backend error response for client consumption) and back-end operations. Furthermore, a comprehensive logging system powered by NLog is integrated to facilitate monitoring, debugging, and operational insights.
+
+## Role-Based Access Control and History Management ##
+
+To ensure that only authorized users can update the Status field of a maintenance card, I've implemented a two-tiered security mechanism, involving both the front-end (Angular) and back-end (API).
+
+Front-End Implementation (Angular):
+
+- Upon user login, the current user's role is securely stored in the browser's local storage.
+- This stored role is then exposed as an Angular Signal within the application.
+- In the maintenance-edit component, I subscribe to this signal to retrieve the current user's role.
+- Based on the retrieved role, the Status update field is conditionally disabled if the user does not possess "Admin" privileges, preventing unauthorized modifications at the UI level.
+  
+Back-End Implementation (API):
+
+- When an update request for a maintenance card is received, the user's role is extracted from the incoming form data.
+- A server-side validation check is performed: if a PropertyManager attempts to alter the Status field, a custom <code>MockAuthException()</code> is deliberately thrown.
+- This exception is then gracefully caught by the global exception handler, which translates it into an appropriate HTTP status code (e.g., 403 Forbidden) and sends it back to the front-end, indicating an unauthorized operation.
+
+This layered approach provides robust security, preventing unauthorized status changes both visually on the front end and definitively at the API level.
