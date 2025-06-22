@@ -99,3 +99,20 @@ Back-End Implementation (API):
 - This exception is then gracefully caught by the global exception handler, which translates it into an appropriate HTTP status code (e.g., 403 Forbidden) and sends it back to the front-end, indicating an unauthorized operation.
 
 This layered approach provides robust security, preventing unauthorized status changes both visually on the front end and definitively at the API level.
+
+## Endpoint Testing Improvements ##
+When testing the updated endpoint on Scalar, please ensure the status and role fields are populated with the correct values.
+
+Current Valid Values:
+
+- status:  "New", "Accepted", "Rejected",  or their corresponding integer representations (0, 1, 2).
+- role:  "Admin" or "PropertyManager",  or their corresponding integer representations (0, 1).
+  
+## Proposed System Enhancements ##
+We can make two significant improvements to our system:
+
+1. Token-Based Authentication System
+Our current system utilizes token-based authentication, and it's essential to ensure its continued proper function and security.
+
+2. Migrate Database from SQLite to MS SQL Server
+We need to migrate our database from SQLite to a more robust solution like MS SQL Server. This will provide better scalability, performance, and features for our application.
