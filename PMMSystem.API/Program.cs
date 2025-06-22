@@ -4,6 +4,7 @@ using PMMSystem.API;
 using PMMSystem.API.Extensions;
 using PMMSystem.Application;
 using PMMSystem.Infrastructure.Data;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,7 +37,13 @@ app.UseExceptionHandler(opt => { });
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+  app.MapOpenApi();
+  //app.UseSwaggerUI(s =>
+  //{
+  //  s.SwaggerEndpoint("/openapi/v1.json", "Property Maintenance Management System API v1");
+
+  //}); if prefer this uncomment it
+  app.MapScalarApiReference(); 
 }
 
 app.UseHttpsRedirection();
