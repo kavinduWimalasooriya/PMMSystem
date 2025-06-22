@@ -13,6 +13,8 @@ export const errorHandlerInterceptor: HttpInterceptorFn = (req, next) => {
         switch(error.status){
           case 401: toastr.error("Unauthorized", error.status)
             break;
+          case 403: toastr.error("Forbidden ", error.status)
+            break;
           case 404: router.navigateByUrl("not-found");
             break;
           case 500:       

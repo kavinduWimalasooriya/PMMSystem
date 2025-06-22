@@ -20,7 +20,7 @@ namespace PMMSystem.API
         httpContext.Response.StatusCode = contextFeature.Error switch
         {
           MaintenanceNotFoundException => StatusCodes.Status404NotFound,
-          MockAuthException => StatusCodes.Status401Unauthorized,
+          MockAuthException => StatusCodes.Status403Forbidden,
           _ => StatusCodes.Status500InternalServerError,
         };
         logger.LogError($"Somthing went wrong {exception.Message}");
