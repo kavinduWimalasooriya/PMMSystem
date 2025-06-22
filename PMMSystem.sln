@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMMSystem.API", "PMMSystem.API\PMMSystem.API.csproj", "{6CB563B2-8910-4D72-8568-B1042FC4FA1E}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMMSystem.Application", "PMMSystem.Application\PMMSystem.Application.csproj", "{C42176E7-C8CB-4852-A3DB-003A5293CE15}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMMSystem.Infrastructure", "PMMSystem.Infrastructure\PMMSystem.Infrastructure.csproj", "{D90021E3-5E11-497C-B063-20E27A6D6E06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PMMSystem.Tests", "PMMSystem.Tests\PMMSystem.Tests.csproj", "{6F749B88-DF78-4137-9025-575046D01CC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D90021E3-5E11-497C-B063-20E27A6D6E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90021E3-5E11-497C-B063-20E27A6D6E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D90021E3-5E11-497C-B063-20E27A6D6E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F749B88-DF78-4137-9025-575046D01CC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F749B88-DF78-4137-9025-575046D01CC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F749B88-DF78-4137-9025-575046D01CC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F749B88-DF78-4137-9025-575046D01CC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
